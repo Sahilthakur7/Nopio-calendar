@@ -1,4 +1,14 @@
 class EventApplication extends React.Component {
+    constructor(){
+        super();
+        this.state = { events: []}
+    }
+    componentDidMount(){
+        this.getDataFromApi();
+    };
+    getDataFromApi(){
+        $.getJSON('api/events', (response) => { this.setState({ events: response})})
+    };
     render () {
         return (
             <div className="container">
@@ -8,7 +18,7 @@ class EventApplication extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-md- 12">
-                        <EventTable/>
+                        <EventTable events={this.state.events}/>
                     </div>
                 </div>
             </div>
