@@ -1,5 +1,12 @@
-class Event extends React.Component {
-    render(){
+var Event = React.createClass({
+    propTypes: {
+        name: React.PropTypes.string,
+        event_date: React.PropTypes.string,
+        place: React.PropTypes.string,
+        description: React.PropTypes.string
+
+    },
+    render: function() {
         var event = this.props.event;
         return(
             <tr>
@@ -8,13 +15,9 @@ class Event extends React.Component {
                 <td>{event.place}</td>
                 <td>{event.description}</td>
             </tr>
-        )
-    }
-}
 
-// Event.propTypes: {
-//     name: React.PropTypes.string,
-//         event_date: React.PropTypes.string,
-//         place: React.PropTypes.string,
-//         description: React.PropTypes.string
-// }
+        )
+
+    }
+
+});

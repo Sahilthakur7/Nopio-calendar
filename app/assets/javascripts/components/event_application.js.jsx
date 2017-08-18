@@ -1,27 +1,44 @@
-class EventApplication extends React.Component {
-    constructor(){
-        super();
-        this.state = { events: []}
-    }
-    componentDidMount(){
+var EventApplication = React.createClass({
+    getInitialState: function() {
+        return { events: [] };
+
+    },
+    componentDidMount: function() {
         this.getDataFromApi();
-    };
-    getDataFromApi(){
-        $.getJSON('api/events', (response) => { this.setState({ events: response})})
-    };
-    render () {
-        return (
+
+    },
+    getDataFromApi: function() {
+        var self = this;
+        jQuery.ajax({
+            url: '/api/events',
+            success: function(data) {
+                self.setState({ events: data });
+
+            },
+            error: function(xhr, status, error) {
+                alert('Cannot get data from API: ', error);
+
+            }
+
+        });
+
+    },
+    render: function() {
+        return(
             <div className="container">
                 <div className="jumbotron">
-                    <h1>Calendar on React</h1>
-                    <p>By Sahil Thakur</p>
+                    <h1>ReactJS Tutorial</h1>
+                    <p>by Piotr Jaworski</p>
                 </div>
                 <div className="row">
-                    <div className="col-md- 12">
-                        <EventTable events={this.state.events}/>
+                    <div className="col-md-12">
+                        <EventTable events={this.state.events} />
                     </div>
                 </div>
             </div>
+
         )
+
     }
-};
+
+});
