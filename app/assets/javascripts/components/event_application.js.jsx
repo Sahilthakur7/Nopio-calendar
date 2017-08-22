@@ -31,7 +31,7 @@ var EventApplication = React.createClass({
         events.push(event);
         this.setState({events: events});
     },
-    handleDeleteRecord(event){
+    handleDeleteRecord: function(event){
         var events = this.state.events.slice();
         var index = events.indexOf(event);
         events.splice(index,1);
