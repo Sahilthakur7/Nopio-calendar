@@ -7,6 +7,12 @@ var EventApplication = React.createClass({
         this.getDataFromApi();
 
     },
+    handleUpdateRecord: function(old_event,event){
+        var events = this.state.events.slice();
+        var index = events.indexOf(old_event);
+        events.splice(index,1,event);
+        this.setState({events: events});
+    },
     getDataFromApi: function() {
         var self = this;
         jQuery.ajax({
@@ -54,7 +60,7 @@ var EventApplication = React.createClass({
                 </div>
                 <div className="row">
                     <div className="col-md-12">
-                        <EventTable events={this.state.events} handleDeleteRecord={this.handleDeleteRecord} />
+                        <EventTable events={this.state.events} handleDeleteRecord={this.handleDeleteRecord} handleUpdateRecord={this.handleUpdateRecord} />
                     </div>
                 </div>
             </div>
