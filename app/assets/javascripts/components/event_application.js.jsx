@@ -1,6 +1,6 @@
 var EventApplication = React.createClass({
     getInitialState: function() {
-        return { events: [] };
+        return { events: [], sort: "name", order: "asc" };
 
     },
     componentDidMount: function() {
@@ -60,7 +60,7 @@ var EventApplication = React.createClass({
                 </div>
                 <div className="row">
                     <div className="col-md-12">
-                        <EventTable events={this.state.events} handleDeleteRecord={this.handleDeleteRecord} handleUpdateRecord={this.handleUpdateRecord} />
+                        <EventTable events={this.state.events} sort={this.state.sort} order={this.state.order} handleDeleteRecord={this.handleDeleteRecord} handleUpdateRecord={this.handleUpdateRecord} />
                     </div>
                 </div>
             </div>
