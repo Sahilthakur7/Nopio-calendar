@@ -5,6 +5,9 @@ var EventTable = React.createClass({
     handleUpdateRecord(old_event,event){
         this.props.handleUpdateRecord(old_event,event);
     },
+    handleSortColumn(name,order){
+        this.props.handleSortColumn(name,order);
+    },
 
     render (){
         var events = [];
@@ -15,29 +18,36 @@ var EventTable = React.createClass({
             <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th className="col-md-2">
+                        <th className="col-md-2 sortable">
                             <SortColumn name="name"
                                 text="Name"
                                 sort={this.props.sort}
-                                order={this.props.order}/>
+                                order={this.props.order}
+                                handleSortColumn={this.handleSortColumn}/>
                         </th>
-                        <th className="col-md-2">
+                        <th className="col-md-2 sortable">
                             <SortColumn name="event_date"
                                 text="Date"
                                 sort={this.props.sort}
-                                order={this.props.order}/>
+                                order={this.props.order}
+                                handleSortColumn={this.handleSortColumn}/>
+
+
+
                         </th>
-                        <th className="col-md-2">
+                        <th className="col-md-2 sortable">
                             <SortColumn name="place"
                                 text="Place"
                                 sort={this.props.sort}
-                                order={this.props.order}/>
+                                order={this.props.order}
+                                handleSortColumn={this.handleSortColumn}/>
                         </th>
-                        <th className="col-md-2">
+                        <th className="col-md-2 sortable">
                             <SortColumn name="description"
                                 text="Description"
                                 sort={this.props.sort}
-                                order={this.props.order}/>
+                                order={this.props.order} 
+                                handleSortColumn={this.handleSortColumn}/>
                         </th>
                         <th className="col-md-2">Actions</th>
 
