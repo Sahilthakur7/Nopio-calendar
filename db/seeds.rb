@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-1.upto(10) do |i|
+1.upto(200) do |i|
     Event.create(name: "Event #{1}",
                 description: "Its an event with num #{i}",
                 event_date: Date.today + rand(3).months,

@@ -1,6 +1,6 @@
 var EventApplication = React.createClass({
     getInitialState: function() {
-        return { events: [], sort: "name", order: "asc" };
+        return { events: [], sort: "name", order: "asc", page: 1, pages: 0 };
 
     },
     componentDidMount: function() {
@@ -18,7 +18,7 @@ var EventApplication = React.createClass({
         jQuery.ajax({
             url: '/api/events',
             success: function(data) {
-                self.setState({ events: data });
+                self.setState({ events: data.events, pages: parseInt(data.pages),page: parseInt(data.page) });
 
             },
             error: function(xhr, status, error) {
@@ -52,12 +52,15 @@ var EventApplication = React.createClass({
             data: { sort_by:name , order: order},
             method: 'GET',
             success: function(data){
-                this.setState({events: data, sort: name,order: order});
+                this.setState({events: data.events, sort: name,order: order});
             }.bind(this),
             error: function(xhr,status,error){
                 alert('Cannot sort events',error);
             }
         });
+    },
+    handleChangePage: function(page){
+        console.log(page);
     },
     render: function() {
         return(
@@ -77,6 +80,9 @@ var EventApplication = React.createClass({
                 <div className="row">
                     <div className="col-md-12">
                         <EventTable events={this.state.events} sort={this.state.sort} order={this.state.order} handleDeleteRecord={this.handleDeleteRecord} handleUpdateRecord={this.handleUpdateRecord} handleSortColumn={this.handleSortColumn} />
+                        <Pagination page={this.state.page}
+                            pages={this.state.pages}
+                            handleChangePage={this.handleChangePage}/>
                     </div>
                 </div>
             </div>
