@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 1.upto(200) do |i|
-    Event.create(name: "Event #{1}",
+    Event.create(name: "Event #{i}",
                 description: "Its an event with num #{i}",
                 event_date: Date.today + rand(3).months,
                 place: "Random place number #{i}")

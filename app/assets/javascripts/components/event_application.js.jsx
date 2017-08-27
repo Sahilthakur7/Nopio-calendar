@@ -4,19 +4,21 @@ var EventApplication = React.createClass({
 
     },
     componentDidMount: function() {
-        this.getDataFromApi();
+        this.getDataFromApi(this.state.page);
 
     },
+
     handleUpdateRecord: function(old_event,event){
         var events = this.state.events.slice();
         var index = events.indexOf(old_event);
         events.splice(index,1,event);
         this.setState({events: events});
     },
-    getDataFromApi: function() {
+    getDataFromApi: function(page) {
         var self = this;
         jQuery.ajax({
             url: '/api/events',
+            data: { page: page},
             success: function(data) {
                 self.setState({ events: data.events, pages: parseInt(data.pages),page: parseInt(data.page) });
 
@@ -60,7 +62,7 @@ var EventApplication = React.createClass({
         });
     },
     handleChangePage: function(page){
-        console.log(page);
+        this.getDataFromApi(page);
     },
     render: function() {
         return(

@@ -1,7 +1,7 @@
 var Pagination = React.createClass({
-    paginationElement(number){
+    paginationElement: function(number){
         return(
-            <li key={'page' + number}>
+            <li key={'page' + number}
                 className={number == this.props.page ? 'active' : ''}>
                 <a onClick={this.props.handleChangePage.bind(null,number)}>{number}</a></li>
 
@@ -16,7 +16,7 @@ var Pagination = React.createClass({
         var pages = [1];
 
         for(var i = page - max_elements; i <= page + max_elements; i++){
-            if(!pages.inculudes(i))
+            if(!pages.includes(i))
                 pages.push(i);
         }
         if(!pages.includes(i))
